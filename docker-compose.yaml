@@ -17,5 +17,18 @@ services:
       KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
     volumes:
       - kafka_kraft:/var/lib/kafka/data
+  postgres:
+    image: postgres:17
+    container_name: flashcards-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: flashcards
+    ports:
+      - "5432:5432"
+    volumes:
+      - flashcards_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
 volumes:
   kafka_kraft:
+  flashcards_pgdata:
