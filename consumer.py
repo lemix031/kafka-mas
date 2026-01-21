@@ -6,6 +6,8 @@ import time
 BOOTSTRAP = "localhost:9092"
 TOPIC_ORDERS = "shop.orders"
 TOPIC_INVENTORY = "shop.inventory"
+TOPIC_DLQ = "shop.dlq"
+
 #mogucnost citanja nekih starijih poruka - najbolje prebaciti u latest
 consumer = Consumer({
     "bootstrap.servers":BOOTSTRAP,
@@ -27,6 +29,16 @@ stock = {
 #stampa stock-a
 print("Inventory service started. Stock: ",stock)
 
+def send_to_dlq(reason: str, raw_value):
+    dlq_event = {
+        "source_topic": TOPIC_ORDERS,
+        "reason": reason,
+        "raw_value": (raw_value.decode("utf-8", errors="replace") if raw_value else None),
+    }
+    producer.produce(TOPIC_DLQ, value=json.dumps(dlq_event))
+    producer.flush()
+    print("DLQ:", dlq_event)
+
 #poll kaze uzmi prvu dostupnu poruku iz kafka brokera, makar iz topic-a na koji sam pretplacen
 #cekam najvise 1.0 sekund (argument)
 while True:
@@ -35,18 +47,26 @@ while True:
         continue
     raw = msg.value()
     if not raw:
+        send_to_dlq("EMPTY_VALUE", raw)
         continue
 
     try:
         order = json.loads(raw.decode("utf-8"))
     except json.JSONDecodeError:
-        print("Skipping bad message:", raw)
+        send_to_dlq("INVALID_JSON", raw)
+        continue
+
+    #Dead letter que logika
+    try:
+        product_name = order["product_name"]
+        quantity = order["quantity"]
+        order_id = order["order_id"]
+    except Exception:
+        send_to_dlq("MISSING_OR_BAD_FIELDS", raw)
         continue
 
     #order = json.loads(msg.value().decode("utf-8"))
-    product_name = order["product_name"]
-    quantity = order["quantity"]
-    order_id = order["order_id"]
+
     if stock.get(product_name, 0) >= quantity:
         stock[product_name] -= quantity
         outcome_type = "INVENTORY_RESERVED"

@@ -20,7 +20,11 @@ while True:
         "product_name": random.choice(products),
         "quantity":random.randint(1,3)
     }
-
+    if random.random() < 0.2:
+        producer.produce("shop.orders", value="NOT A JSON")
+        producer.flush()
+        continue
+    
     producer.produce(
         topic,
         key = event["order_id"],
