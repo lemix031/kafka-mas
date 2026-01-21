@@ -19,16 +19,17 @@ services:
       - kafka_kraft:/var/lib/kafka/data
   postgres:
     image: postgres:17
-    container_name: flashcards-postgres
+    container_name: inventory-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: flashcards
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
-      - flashcards_pgdata:/var/lib/postgresql/data
+      - inventory_pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
     restart: unless-stopped
 volumes:
   kafka_kraft:
-  flashcards_pgdata:
+  inventory_pgdata:

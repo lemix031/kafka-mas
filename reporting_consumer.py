@@ -29,7 +29,15 @@ VALUES (%s,%s,%s,%s,%s,%s::jsonb)
 
 UPSERT_STATUS_SQL = """
 INSERT INTO order_status (order_id, status, product_name, quantity, reason)
+VALUES (%s, %s, %s, %s, %s)
+ON CONFLICT (order_id) DO UPDATE SET
+  last_updated_at = NOW(),
+  status = EXCLUDED.status,
+  product_name = EXCLUDED.product_name,
+  quantity = EXCLUDED.quantity,
+  reason = EXCLUDED.reason
 """
+
 
 while True:
     msg = consumer.poll(1.0)

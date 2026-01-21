@@ -1,0 +1,16 @@
+ORDER CREATED {'order_id': '3d2f82f3-9857-44fd-b261-7435ebacf735', 'product_name': 'duks', 'quantity': 1}
+ORDER CREATED {'order_id': '078bb0c4-0f61-4c6b-90bb-171aa5d2c658', 'product_name': 'duks', 'quantity': 3}
+ORDER CREATED {'order_id': 'df0406c1-cea3-440e-99c5-b4042e194936', 'product_name': 'majica', 'quantity': 1}
+ORDER CREATED {'order_id': '55b1fb0f-5745-44db-b489-ed3ba43c6c5d', 'product_name': 'patike', 'quantity': 1}
+ORDER CREATED {'order_id': '9e24bdd7-a55d-4945-8ae1-790025c379ee', 'product_name': 'patike', 'quantity': 3}
+ORDER CREATED {'order_id': 'db5f3ad1-054d-46cd-af4f-4ea5e27741f9', 'product_name': 'duks', 'quantity': 3}
+ORDER CREATED {'order_id': '33c4ead2-ce8b-4883-b712-1497d0779323', 'product_name': 'duks', 'quantity': 3}
+ORDER CREATED {'order_id': 'fc55411b-3ed9-4318-9324-997ad904df41', 'product_name': 'duks', 'quantity': 1}
+ORDER CREATED {'order_id': '6d0feeaa-da2a-4cf9-a585-53360791433a', 'product_name': 'patike', 'quantity': 3}
+ORDER CREATED {'order_id': '74481bec-6bfd-4792-9463-33b48cd4de48', 'product_name': 'duks', 'quantity': 1}
+ORDER CREATED {'order_id': '7952c580-2d42-4138-9e94-ce37ebe589ee', 'product_name': 'patike', 'quantity': 3}
+ORDER CREATED {'order_id': '91208a5a-a3cc-454f-95d8-8aff2f6104f1', 'product_name': 'duks', 'quantity': 3}
+ORDER CREATED {'order_id': '733978b8-0cd0-4e35-97fb-df94950b0abd', 'product_name': 'patike', 'quantity': 2}
+ORDER CREATED {'order_id': 'bcfb5379-4feb-44f0-ac5f-78eb9761cd03', 'product_name': 'duks', 'quantity': 2}
+ORDER CREATED {'order_id': '64d6cd60-ca09-4fe5-b94a-9659005d80f0', 'product_name': 'patike', 'quantity': 3}
+ORDER CREATED {'order_id': '4bec89c3-50d3-429e-8bcc-bb8eb92dcd0e', 'product_name': 'duks', 'quantity': 2}
