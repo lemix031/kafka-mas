@@ -16,9 +16,9 @@ products = ["majica","patike","duks"]
 
 while True:
     event = {
-        "order_id":str(uuid.uiid4()),
+        "order_id":str(uuid.uuid4()),
         "product_name": random.choice(products),
-        "quantity":random.randomint(1,3)
+        "quantity":random.randint(1,3)
     }
 
     producer.produce(
